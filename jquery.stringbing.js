@@ -77,18 +77,19 @@ $.ajax({
             opts.data.value = value
         if ('string' === typeof callback)
             opts.dataType = 'jsonp'
+        return opts
     }
 
     function localGet_(key, callback) {
-        
+        // get from localStorage
     }
 
     function localSet_(key, value, callback) {
-        
+        // set to localStorage
     }
 
     function localDestroy_(key, callback) {
-        //
+        // delete from localStorage
     }
 
     function StringBin() {
