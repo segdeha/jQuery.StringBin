@@ -49,16 +49,10 @@ $.ajax({
 */
 
 ;(function ($, undefined) {
-    var loc, uri, params, stringbin
+    var loc, uri, stringbin
 
     loc    = window.localStorage
     uri    = 'http://api.stringbin.com/'
-    params = {
-        pin      : 'pin=',
-        key      : 'key=',
-        value    : 'value=',
-        callback : 'callback='
-    }
 
     function request_(opts) {
         $.ajax(opts)
@@ -75,8 +69,12 @@ $.ajax({
         }
         if (value !== undefined)
             opts.data.value = value
-        if ('string' === typeof callback)
-            opts.dataType = 'jsonp'
+        if ('string' === typeof callback) {
+            opts.dataType      = 'jsonp'
+            opts.data.callback = callback
+        } else if ('function' === typeof callback) {
+            opts.success = callback
+        }
         return opts
     }
 
